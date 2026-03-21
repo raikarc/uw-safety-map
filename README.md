@@ -1,4 +1,4 @@
-# HuskyHelp 🗺️
+# HuskyHelp 🐺📍
 ## _Protect The Pack_
 Contributors: Raika Roy Choudhury, Sakshi Verma
 > A live, crowdsourced safety map for the University of Washington and U-District — built by students, for students.
@@ -65,9 +65,6 @@ The app also crowdsources the *duration* of an incident. Pins automatically expi
 - Socket.IO rooms can be used in a future version to only broadcast incidents to users within a relevant geographic area, reducing noise and improving scalability
 - Moving to Firebase Firestore adds persistence, real-time listeners, and horizontal scalability without a major architectural change
 
----
-## Demo
-Access the demo here: https://youtu.be/7VJ4ZPGkkCw
 ---
 
 ## Kiro Usage
@@ -158,6 +155,10 @@ Runs on `http://localhost:5173` (or `5174` if that port is taken)
 ### 4. Open it
 
 Go to the local URL in your terminal. The green "Live" dot in the header confirms the WebSocket connection is active.
+
+---
+## Video Demo
+Find the video demo here: https://youtu.be/7VJ4ZPGkkCw
 
 ---
 

@@ -1,0 +1,12 @@
+{
+  "name": "Server Health Check After Task",
+  "version": "1.0.0",
+  "description": "After completing a spec task, verify the server still starts cleanly",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A spec task just completed. Check server/index.js for any syntax or logic issues using getDiagnostics, and confirm the incident data model still matches the shape defined in the architecture steering doc."
+  }
+}

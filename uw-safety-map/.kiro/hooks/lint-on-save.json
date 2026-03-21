@@ -1,0 +1,13 @@
+{
+  "name": "Lint on Save",
+  "version": "1.0.0",
+  "description": "Run ESLint on the client whenever a JS or JSX file is saved",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["client/src/**/*.jsx", "client/src/**/*.js"]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run lint"
+  }
+}

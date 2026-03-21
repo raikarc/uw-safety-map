@@ -1,0 +1,13 @@
+{
+  "name": "UWPD Prompt Safety Check",
+  "version": "1.0.0",
+  "description": "Before writing to any incident-related component, verify that Violence and Criminal Activity incident types still trigger the UWPD contact modal",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file: if it touches incident reporting logic (ReportModal, App.jsx, or useIncidents), confirm that Violence and Criminal Activity incident types still trigger the UWPDModal after submission. Do not remove or bypass this behavior."
+  }
+}

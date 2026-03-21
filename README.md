@@ -66,6 +66,9 @@ The app also crowdsources the *duration* of an incident. Pins automatically expi
 - Moving to Firebase Firestore adds persistence, real-time listeners, and horizontal scalability without a major architectural change
 
 ---
+## Demo
+Access the demo here: https://youtu.be/7VJ4ZPGkkCw
+---
 
 ## Kiro Usage
 

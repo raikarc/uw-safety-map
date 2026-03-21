@@ -1,4 +1,5 @@
-# UW Safety Map 🗺️
+# Husky Help 🗺️
+# _Protect the Pack_
 
 ## What is this?
 

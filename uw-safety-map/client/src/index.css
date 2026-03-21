@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #1a0a2e;
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  background: #2d1b4e;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #2d1b4e;
+  color: #fff;
+  border: 1px solid #4b2e83;
+  border-radius: 8px;
+}
+
+.leaflet-popup-tip {
+  background: #4b2e83;
+}
+
+.leaflet-popup-close-button {
+  color: #b7a57a !important;
+}

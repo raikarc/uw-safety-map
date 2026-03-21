@@ -34,6 +34,14 @@ export default function HelpChat({ onClose }) {
       if (response.followUp) {
         msgs.push({ from: 'bot', text: response.followUp });
       }
+      if (response.femaleAddon) {
+        msgs.push({
+          from: 'bot',
+          text: response.femaleAddon.note,
+          contacts: response.femaleAddon.contacts,
+          tips: response.femaleAddon.tips,
+        });
+      }
       setMessages(prev => [...prev, ...msgs]);
     }, 600);
   }

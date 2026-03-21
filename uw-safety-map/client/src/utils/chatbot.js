@@ -208,6 +208,8 @@ const SCENARIOS = [
   },
 ];
 
+// Female identity keywords — when detected, append female-specific resources
+// to whatever the primary scenario response already is.
 const FALLBACK = {
   text: "I want to make sure I give you the right help. Can you tell me a bit more? For example: are you on the LINK, a bus, on campus, or walking in the U-District? What's happening?",
   contacts: [
@@ -216,20 +218,60 @@ const FALLBACK = {
     { label: 'Seattle Police Non-Emergency', number: '206-625-5011' },
   ],
 };
+const FEMALE_IDENTITY_KEYWORDS = [
+  'i am a girl', "i'm a girl", 'im a girl',
+  'i am a woman', "i'm a woman", 'im a woman',
+  'i am female', "i'm female", 'im female',
+  'as a girl', 'as a woman', 'as a female',
+  'she/her', 'feminine', 'femme',
+];
+
+const FEMALE_ADDON = {
+  note: "Since you've mentioned you're a woman, here are additional resources specifically for you:",
+  contacts: [
+    { label: 'National Sexual Assault Hotline (RAINN)', number: '800-656-4673' },
+    { label: 'National DV Hotline (24/7)', number: '800-799-7233' },
+    { label: 'Harborview Center for Sexual Assault', number: '206-744-1600' },
+    { label: 'UW Women\'s Center (HUB 201)', number: '206-685-1090' },
+    { label: 'UW Title IX Office', number: '206-616-2028' },
+  ],
+  tips: [
+    'Text "HELLO" to 741741 (Crisis Text Line) if you cannot speak safely.',
+    'Harborview\'s Sexual Assault Center provides 24/7 care — no police report required.',
+    'The UW Women\'s Center (HUB 201) is a safe, confidential space on campus.',
+    'RAINN advocates can walk you through all your options without pressure to report.',
+    'If you need emergency shelter away from a dangerous situation, the DV hotline can help.',
+  ],
+};
 
 export function getResponse(input) {
   const lower = input.toLowerCase();
 
+  const isFemale = FEMALE_IDENTITY_KEYWORDS.some(kw => lower.includes(kw));
+
+  // Find the primary scenario match
+  let response = null;
   for (const scenario of SCENARIOS) {
     if (scenario.keywords.some(kw => lower.includes(kw))) {
-      return {
+      response = {
         text: scenario.text,
-        contacts: scenario.contacts,
-        tips: scenario.tips,
+        contacts: [...scenario.contacts],
+        tips: scenario.tips ? [...scenario.tips] : [],
         followUp: scenario.followUp || null,
       };
+      break;
     }
   }
 
-  return FALLBACK;
+  if (!response) {
+    response = { ...FALLBACK, contacts: [...FALLBACK.contacts], tips: [] };
+  }
+
+  // If female identity detected and not already the female_safety scenario,
+  // append the female-specific addon as a second message
+  if (isFemale && (!response.femaleAdded)) {
+    response.femaleAddon = FEMALE_ADDON;
+  }
+
+  return response;
 }

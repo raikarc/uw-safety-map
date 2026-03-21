@@ -6,8 +6,8 @@ export default function Header({ connected, onSimulate, onHelpChat }) {
       <div className="header-left">
         <span className="header-logo">🗺️</span>
         <div>
-          <h1 className="header-title">UW Safety Map</h1>
-          <p className="header-sub">University District · Crowdsourced Safety</p>
+          <h1 className="header-title">HuskyHelp</h1>
+          <p className="header-sub">Protect the Pack · U-District Safety</p>
         </div>
       </div>
       <div className="header-right">

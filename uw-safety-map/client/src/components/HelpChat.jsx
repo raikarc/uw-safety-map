@@ -30,7 +30,11 @@ export default function HelpChat({ onClose }) {
     setTimeout(() => {
       const response = getResponse(text);
       setTyping(false);
-      setMessages(prev => [...prev, { from: 'bot', ...response }]);
+      const msgs = [{ from: 'bot', ...response }];
+      if (response.followUp) {
+        msgs.push({ from: 'bot', text: response.followUp });
+      }
+      setMessages(prev => [...prev, ...msgs]);
     }, 600);
   }
 

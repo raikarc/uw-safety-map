@@ -1,0 +1,81 @@
+.naloxone-overlay {
+  align-items: flex-start;
+  padding-top: 40px;
+  overflow-y: auto;
+}
+
+.naloxone-modal {
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.naloxone-sub {
+  font-size: 13px;
+  color: #d4c5f0;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.naloxone-steps {
+  background: #1a0a2e;
+  border-left: 3px solid #e53935;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px 12px 32px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.naloxone-steps li {
+  font-size: 13px;
+  color: #e8e0f8;
+  line-height: 1.5;
+}
+
+.naloxone-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #b7a57a;
+  margin-bottom: 10px;
+}
+
+.naloxone-locations {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.naloxone-location {
+  background: #1a0a2e;
+  border: 1px solid #4b2e83;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.naloxone-location-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.naloxone-location-address {
+  font-size: 11px;
+  color: #9e8fc0;
+  font-family: monospace;
+  margin-bottom: 3px;
+}
+
+.naloxone-location-note {
+  font-size: 12px;
+  color: #b7a57a;
+  margin-bottom: 2px;
+}
+
+.naloxone-location-hours {
+  font-size: 11px;
+  color: #6b5a8a;
+}

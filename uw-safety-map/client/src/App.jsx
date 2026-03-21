@@ -8,6 +8,7 @@ import IncidentPanel from './components/IncidentPanel';
 import NotificationToast from './components/NotificationToast';
 import UWAlertSimulator from './components/UWAlertSimulator';
 import UWPDModal from './components/UWPDModal';
+import NaloxoneModal from './components/NaloxoneModal';
 import HelpChat from './components/HelpChat';
 import './App.css';
 
@@ -20,6 +21,7 @@ export default function App() {
   const [notifications, setNotifications] = useState([]);
   const [showSimulator, setShowSimulator] = useState(false);
   const [showUWPD, setShowUWPD] = useState(false);
+  const [showNaloxone, setShowNaloxone] = useState(false);
   const [showHelpChat, setShowHelpChat] = useState(false);
   const prevIncidentIds = useRef(new Set());
 
@@ -63,6 +65,10 @@ export default function App() {
     setReportPin(null);
     if (data.type === 'Violence' || data.type === 'Criminal Activity') {
       setShowUWPD(true);
+    }
+    if (data.type === 'Overdose') {
+      setShowUWPD(true);
+      setShowNaloxone(true);
     }
   }
 
@@ -113,6 +119,7 @@ export default function App() {
       )}
 
       {showUWPD && <UWPDModal onClose={() => setShowUWPD(false)} />}
+      {showNaloxone && <NaloxoneModal onClose={() => setShowNaloxone(false)} />}
 
       {showHelpChat && <HelpChat onClose={() => setShowHelpChat(false)} />}
     </div>

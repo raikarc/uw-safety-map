@@ -148,6 +148,34 @@ const SCENARIOS = [
     ],
   },
   {
+    id: 'female_safety',
+    keywords: [
+      'woman', 'women', 'female', 'girl', 'sexual assault', 'sexually assaulted', 'rape', 'raped',
+      'groped', 'touched without consent', 'domestic', 'domestic violence', 'abusive', 'abuse',
+      'boyfriend', 'ex boyfriend', 'partner hurting', 'intimate partner', 'dv', 'gender based',
+      'unsafe as a woman', 'being followed as a woman', 'creep', 'catcalled', 'catcalling',
+    ],
+    text: "You are not alone and what you're experiencing is not okay. Here's immediate support and who to call:",
+    contacts: [
+      { label: 'National Sexual Assault Hotline (RAINN)', number: '800-656-4673' },
+      { label: 'National DV Hotline (24/7)', number: '800-799-7233' },
+      { label: 'UW Safecampus (threats/harassment)', number: '206-685-7233' },
+      { label: 'Harborview Center for Sexual Assault', number: '206-744-1600' },
+      { label: 'UWPD Emergency', number: '206-685-1800' },
+      { label: '911', number: '911' },
+    ],
+    tips: [
+      'You can text "HELLO" to 741741 (Crisis Text Line) if you cannot speak safely.',
+      'Harborview\'s Center for Sexual Assault & Traumatic Stress provides 24/7 care — no police report required to receive medical help.',
+      'UW\'s Title IX office (206-616-2028) handles sexual harassment and assault involving UW students or staff.',
+      'If you are in immediate danger, get to a public place with other people — a business, restaurant, or campus building.',
+      'The UW Women\'s Center (HUB 201) is a safe space on campus: 206-685-1090.',
+      'You do not have to report to police to access support — advocates at RAINN can help you understand all your options.',
+      'If you need to leave a dangerous living situation, call the DV hotline — they can help find emergency shelter.',
+    ],
+    followUp: "Can you tell me a bit more about where you are right now — are you on campus, in the U-District, or somewhere else? I can give you more specific nearby resources.",
+  },
+  {
     id: 'mental_health',
     keywords: ['mental health', 'crisis', 'panic', 'panic attack', 'anxiety', 'scared', 'overwhelmed', 'breakdown', 'suicidal', 'self harm', 'hurting myself'],
     text: "You're not alone. Here's immediate support:",
@@ -192,17 +220,13 @@ const FALLBACK = {
 export function getResponse(input) {
   const lower = input.toLowerCase();
 
-  // Always escalate to 911 if they say "help" alone or "emergency"
-  if (/\b(help me|emergency|danger|unsafe|scared|afraid|frightened)\b/.test(lower)) {
-    // Still try to match a specific scenario first
-  }
-
   for (const scenario of SCENARIOS) {
     if (scenario.keywords.some(kw => lower.includes(kw))) {
       return {
         text: scenario.text,
         contacts: scenario.contacts,
         tips: scenario.tips,
+        followUp: scenario.followUp || null,
       };
     }
   }

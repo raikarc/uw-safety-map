@@ -7,6 +7,7 @@ import ReportModal from './components/ReportModal';
 import IncidentPanel from './components/IncidentPanel';
 import NotificationToast from './components/NotificationToast';
 import UWAlertSimulator from './components/UWAlertSimulator';
+import UWPDModal from './components/UWPDModal';
 import './App.css';
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
   const [selectedIncident, setSelectedIncident] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [showSimulator, setShowSimulator] = useState(false);
+  const [showUWPD, setShowUWPD] = useState(false);
   const prevIncidentIds = useRef(new Set());
 
   // Detect new incidents and push notifications
@@ -57,6 +59,9 @@ export default function App() {
     if (!reportPin) return;
     await reportIncident({ ...reportPin, ...data });
     setReportPin(null);
+    if (data.type === 'Violence' || data.type === 'Criminal Activity') {
+      setShowUWPD(true);
+    }
   }
 
   return (
@@ -104,6 +109,8 @@ export default function App() {
           onClose={() => setShowSimulator(false)}
         />
       )}
+
+      {showUWPD && <UWPDModal onClose={() => setShowUWPD(false)} />}
     </div>
   );
 }

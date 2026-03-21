@@ -1,17 +1,19 @@
-# Husky Help 🗺️
+# Husky Help 🐺
 # _Protect the Pack_
+# Contributors: Raika RC, Sakshi Verma
 
 ## What is this?
 
-UW Safety Map is a crowdsourced safety tool built for University of Washington students navigating the U-District. The UW area is an urban campus where students often travel significant distances between housing and campus — this app gives them real-time, community-driven visibility into what's happening around them.
+Husky Help is a crowdsourced safety tool built for University of Washington students navigating the U-District. The UW area is an urban campus where students often travel significant distances between housing and campus — this app gives them real-time, community-driven visibility into what's happening around them.
 
 ### Features
 
-- **Incident Reporting** — Drop a pin anywhere within the U-District boundary and report what you saw: Police Presence, Criminal Activity, or Violence
-- **UW Alert Integration** — When a UW Alert is issued, it appears on the map automatically as a distinct pin so students can see exactly where it happened
-- **Live Updates** — The map updates in real time via WebSockets; all connected users see new incidents instantly
-- **Crowdsourced Expiry** — Nearby users get a notification asking "Is this still happening?" Incidents auto-expire after 30 minutes if no one confirms them, keeping the map accurate
-- **Confirm / Resolve** — Click any pin to confirm it's still active (resets the 30-min timer) or mark it as resolved
+- **Incident Reporting** — Drop a pin anywhere within the U-District boundary and report what you saw: Police Presence, Criminal Activity, Drug Overdose, or Violence.
+- **Help Assistant Bot** — Explain your situation in many or few words, and this Help Assistant will provide you tips, nearby safety locations, helplines to call, and more. For women and feminine individuals, extra hotlines are provided for female support!
+- **UW Alert Integration** — When a UW Alert is issued, it appears on the map automatically as a distinct pin so students can see exactly where it happened.
+- **Live Updates** — The map updates in real time via WebSockets; all connected users see new incidents instantly.
+- **Crowdsourced Expiry** — Nearby users get a notification asking "Is this still happening?" Incidents auto-expire after 30 minutes if no one confirms them, keeping the map accurate.
+- **Confirm / Resolve** — Click any pin to confirm it's still active (resets the 30-min timer) or mark it as resolved.
 
 ---
 
@@ -75,6 +77,7 @@ Once running, you can:
 
 - **Click the map** inside the dashed U-District boundary to report an incident
 - **Click "Simulate UW Alert"** in the header to test the UW Alert flow
+- **Talk to Help Assistant** by clicking on the help chat
 - **Click any pin** to confirm or resolve an incident
 - Open multiple browser tabs to see real-time sync in action
 
@@ -97,8 +100,10 @@ uw-safety-map/
 
 ## Future Plans
 
+- Pilot launch on small test group of students to receive feedback and implement new features accordingly
+- Real UW Alert API integration
+- Have Help Assistant call/text/share location to appropriate helpline if incident is left unresolved
 - Firebase Firestore for persistent storage
-- User authentication
+- User authentication, or guest input for non-UW students
 - Live location tracking with proximity-based notifications
 - Mobile app via React Native / Expo
-- Real UW Alert API integration

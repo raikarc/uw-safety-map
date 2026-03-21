@@ -28,6 +28,7 @@ The app also crowdsources the *duration* of an incident. Pins automatically expi
 ### Key Features
 
 - **Incident Reporting** — Drop a pin anywhere within the U-District boundary and tag it as Police Presence, Criminal Activity, or Violence, with an optional description
+- **Help Chatbot** -- Give Safety Assistant details of your (non-emergency) dangerous situation and it will provide you a plan of action with emergency phone numbers to call just in case 
 - **UW Alert Integration** — Official UW Alerts are automatically added to the map as distinct pins so students can see exactly where and what is happening
 - **Real-Time Updates** — The map updates live via WebSockets; every connected user sees new incidents the moment they're reported
 - **Crowdsourced Expiry** — Incidents auto-expire after 30 minutes if no one confirms them. Nearby users receive a prompt asking "Is this still happening?" to keep data reliable
@@ -108,7 +109,7 @@ MCP servers can extend Kiro with external tool access. For a future version of t
 ### Future Plans
 - **Focus Group Feedback** -- Demo product to small subset of UW students before launching so they can give feedback on our features which we will then implement
 - **Firebase Firestore** — Persistent storage so incidents survive server restarts and can be queried historically
-- **UW NetID Authentication** — Tie reports to verified UW students to reduce spam and enable trust scoring
+- **UW NetID Authentication & Guest users** — Tie reports to verified UW students/U-District residents to reduce spam and enable trust scoring
 - **React Native / Expo** — Mobile app with native push notifications (Firebase Cloud Messaging) for proximity alerts
 - **Live location tracking** — Opt-in GPS tracking to automatically detect when a user is near an active incident
 - **Real UW Alert API integration** — Parse and ingest official UW Alert emails/SMS into the map automatically

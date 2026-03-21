@@ -1,6 +1,6 @@
 import './Header.css';
 
-export default function Header({ connected, onSimulate }) {
+export default function Header({ connected, onSimulate, onHelpChat }) {
   return (
     <header className="header">
       <div className="header-left">
@@ -13,6 +13,9 @@ export default function Header({ connected, onSimulate }) {
       <div className="header-right">
         <div className={`status-dot ${connected ? 'connected' : 'disconnected'}`} />
         <span className="status-label">{connected ? 'Live' : 'Offline'}</span>
+        <button className="help-chat-btn" onClick={onHelpChat}>
+          🆘 Help Chat
+        </button>
         <button className="uw-alert-btn" onClick={onSimulate}>
           📢 Simulate UW Alert
         </button>

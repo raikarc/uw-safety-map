@@ -64,6 +64,29 @@
   color: #d4c5f0;
 }
 
+.help-chat-btn {
+  background: #c62828;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  animation: urgentPulse 2.5s infinite;
+}
+
+.help-chat-btn:hover {
+  background: #e53935;
+  animation: none;
+}
+
+@keyframes urgentPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(198, 40, 40, 0); }
+}
+
 .uw-alert-btn {
   background: #b7a57a;
   color: #1a0a2e;

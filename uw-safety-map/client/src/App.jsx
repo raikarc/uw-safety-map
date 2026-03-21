@@ -8,6 +8,7 @@ import IncidentPanel from './components/IncidentPanel';
 import NotificationToast from './components/NotificationToast';
 import UWAlertSimulator from './components/UWAlertSimulator';
 import UWPDModal from './components/UWPDModal';
+import HelpChat from './components/HelpChat';
 import './App.css';
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
   const [notifications, setNotifications] = useState([]);
   const [showSimulator, setShowSimulator] = useState(false);
   const [showUWPD, setShowUWPD] = useState(false);
+  const [showHelpChat, setShowHelpChat] = useState(false);
   const prevIncidentIds = useRef(new Set());
 
   // Detect new incidents and push notifications
@@ -66,7 +68,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header connected={connected} onSimulate={() => setShowSimulator(true)} />
+      <Header connected={connected} onSimulate={() => setShowSimulator(true)} onHelpChat={() => setShowHelpChat(prev => !prev)} />
 
       <div className="map-container">
         <SafetyMap
@@ -111,6 +113,8 @@ export default function App() {
       )}
 
       {showUWPD && <UWPDModal onClose={() => setShowUWPD(false)} />}
+
+      {showHelpChat && <HelpChat onClose={() => setShowHelpChat(false)} />}
     </div>
   );
 }

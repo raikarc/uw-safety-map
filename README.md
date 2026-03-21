@@ -4,7 +4,7 @@
 
 ## What is this?
 
-Husky Help is a crowdsourced safety tool built for University of Washington students navigating the U-District. The UW area is an urban campus where students often travel significant distances between housing and campus — this app gives them real-time, community-driven visibility into what's happening around them.
+Husky Help is a crowdsourced safety tool built for University of Washington students navigating the U-District. UW students have always extensively used public transportation - sometimes it can get unsafe. Husky Help is how to reach out for the right help at the right time.
 
 ### Features
 

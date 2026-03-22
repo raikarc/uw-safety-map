@@ -1,5 +1,6 @@
 # HuskyHelp 🐺📍
 ## _Protect The Pack_
+Contributors: Raika Roy Choudhury, Sakshi Verma
 > A live, crowdsourced safety map for the University of Washington and U-District — built by students, for students.
 
 ---

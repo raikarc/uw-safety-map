@@ -3,8 +3,6 @@
 ## _Protect The Pack_
 > A live, crowdsourced safety map for the University of Washington and U-District — built by students, for students.
 
-__By Raika Roy Choudhury__
-
 ---
 
 ## Project Overview

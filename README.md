@@ -146,12 +146,12 @@ MCP servers extend Kiro with external tool access. A future integration with a g
 
 ---
 ## Demo
-### Opening the app
+### Opening the app: Authentication page
 <img width="959" height="564" alt="Authentication page" src="https://github.com/user-attachments/assets/61f108cd-c801-42d4-a14f-55c21370a4e1" />
 
 When you open the app, you will immediately be met with an authentication page. Collecting authentication restricts the map to just UW students/staff, allowing for the map to be more accurate and reliable. Additionally, this allows each user to have a unique profile where information can be stored about them.
 
-### Landing page
+### Home page
 <img width="959" height="565" alt="Basic landing page" src="https://github.com/user-attachments/assets/d3dc9731-5dfa-4c42-bfac-14396dcd942a" />
 
 ### Adding a Pin
@@ -160,7 +160,8 @@ Choose the option from the drop down menu that best describes your situation:
 
 <img width="289" height="278" alt="Report an incident" src="https://github.com/user-attachments/assets/3532d930-75e3-4824-a076-4e78132e1a16" />
 
-If you choose an option where you may need immediate police attention, _Violence, Criminal Activity, or Overdose_, you will be connected to UWPD contacts to use if you see the emergency fit:
+
+If you choose an option where you may need immediate police attention _(Violence, Criminal Activity, or Overdose)_ you will be connected to UWPD contacts to use if you see the emergency fit:
 
 <img width="266" height="302" alt="Call UWPD pop up" src="https://github.com/user-attachments/assets/21a99b04-c717-4b60-9424-d0fe27a3a89f" />
 
@@ -180,7 +181,8 @@ If you have a non-emergency situation you are unsure how to navigate, you can us
 <img width="409" height="492" alt="safety assistant" src="https://github.com/user-attachments/assets/e53c277f-6c75-481d-91a4-16203c9b7acf" />
 <img width="278" height="212" alt="routes of action 2" src="https://github.com/user-attachments/assets/a9b6a8ad-a928-4d7c-a5d2-c77fad430e20" />
 
-Safety Assistant is programmed to help with __identity-specific safety concerns__ as well. If you specify your identity _(gender, race, etc.)_, Safety Assistant will provide you with __identity-specific emergency numbers__ to call. For example, if you specify you are a woman, Safety Assistant provides you with the number of the nearby Women's Center too.
+#### Safety Assistant is programmed to help with __identity-specific safety concerns__ as well. 
+If you specify your identity _(gender, race, etc.)_, Safety Assistant will provide you with __identity-specific emergency numbers__ to call. For example, if you specify you are a woman, Safety Assistant provides you with the number of the nearby Women's Center too.
 
 <img width="281" height="400" alt="Safety assistant woman p1" src="https://github.com/user-attachments/assets/4f4b9a3b-a74c-48c1-83c3-ce6d2f317a13" />
 <img width="277" height="398" alt="Safety assistant woman p2" src="https://github.com/user-attachments/assets/13611c83-5fbb-4206-be7a-94ca154ef33d" />
@@ -191,6 +193,12 @@ Safety Assistant is programmed to help with __identity-specific safety concerns_
 
 ### SafeWalk
 <img width="959" height="502" alt="Safewalk arrow" src="https://github.com/user-attachments/assets/9eb983d0-93bc-4c13-9ef5-2249619e4ede" />
+
+---
+
+## Video Demo
+
+Find the video demo here: https://youtu.be/7VJ4ZPGkkCw
 
 ---
 
@@ -231,12 +239,6 @@ Runs on `http://localhost:5173` (or `5174` if that port is taken)
 ### 4. Open it
 
 Go to the local URL in your terminal. The green "Live" dot in the header confirms the WebSocket connection is active.
-
----
-
-## Video Demo
-
-Find the video demo here: https://youtu.be/7VJ4ZPGkkCw
 
 ---
 

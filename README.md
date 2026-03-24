@@ -148,6 +148,7 @@ MCP servers extend Kiro with external tool access. A future integration with a g
 ## Demo
 ### Opening the app
 <img width="959" height="564" alt="Authentication page" src="https://github.com/user-attachments/assets/61f108cd-c801-42d4-a14f-55c21370a4e1" />
+
 When you open the app, you will immediately be met with an authentication page. Collecting authentication restricts the map to just UW students/staff, allowing for the map to be more accurate and reliable. Additionally, this allows each user to have a unique profile where information can be stored about them.
 
 ### Landing page
@@ -155,33 +156,41 @@ When you open the app, you will immediately be met with an authentication page. 
 
 ### Adding a Pin
 Click anywhere on the map, and you can add a pin.
+Choose the option from the drop down menu that best describes your situation:
+
 <img width="289" height="278" alt="Report an incident" src="https://github.com/user-attachments/assets/3532d930-75e3-4824-a076-4e78132e1a16" />
-Choose the option from the drop-down menu that best describes your safety concern.
+
+If you choose an option where you may need immediate police attention, _Violence, Criminal Activity, or Overdose_, you will be connected to UWPD contacts to use if you see the emergency fit:
 
 <img width="266" height="302" alt="Call UWPD pop up" src="https://github.com/user-attachments/assets/21a99b04-c717-4b60-9424-d0fe27a3a89f" />
-If you choose an option where you may need immediate police attention, _Violence, Criminal Activity, or Overdose_, you will be connected to UWPD contacts to use if you see the emergency fit.
 
 ### Profile
-<img width="959" height="563" alt="Profile pop up" src="https://github.com/user-attachments/assets/dc019ef2-60e9-4b23-9831-01d2365b37a1" />
 Each user has their own profile within the app, where they're able to store information about themselves which can be sent to police officers later on if they are in danger.
 
+<img width="959" height="563" alt="Profile pop up" src="https://github.com/user-attachments/assets/dc019ef2-60e9-4b23-9831-01d2365b37a1" />
+
 ### Emergency Contacts
-<img width="959" height="563" alt="adding emergency contacts" src="https://github.com/user-attachments/assets/d67334d4-980d-49e7-8037-42462e8f4359" />
 In the profile tab, users can add emergency contacts. These are who will be contacted in case an SOS alert goes off.
+
+<img width="959" height="563" alt="adding emergency contacts" src="https://github.com/user-attachments/assets/d67334d4-980d-49e7-8037-42462e8f4359" />
+
+### Safety Assistant (Chatbot)
+If you have a non-emergency situation you are unsure how to navigate, you can use Safety Assistant for help! Give a descriptor of your situation, and Safety Assistant will provide you with phone numbers to contact and a potential route of action. 
+
+<img width="409" height="492" alt="safety assistant" src="https://github.com/user-attachments/assets/e53c277f-6c75-481d-91a4-16203c9b7acf" />
+<img width="278" height="212" alt="routes of action 2" src="https://github.com/user-attachments/assets/a9b6a8ad-a928-4d7c-a5d2-c77fad430e20" />
+
+Safety Assistant is programmed to help with __identity-specific safety concerns__ as well. If you specify your identity _(gender, race, etc.)_, Safety Assistant will provide you with __identity-specific emergency numbers__ to call. For example, if you specify you are a woman, Safety Assistant provides you with the number of the nearby Women's Center too.
+
+<img width="281" height="400" alt="Safety assistant woman p1" src="https://github.com/user-attachments/assets/4f4b9a3b-a74c-48c1-83c3-ce6d2f317a13" />
+<img width="277" height="398" alt="Safety assistant woman p2" src="https://github.com/user-attachments/assets/13611c83-5fbb-4206-be7a-94ca154ef33d" />
+
 
 ### Heatmap
 <img width="959" height="503" alt="Heatmap demo" src="https://github.com/user-attachments/assets/e99481f2-9f73-4c09-9f08-a624923d4345" />
 
 ### SafeWalk
 <img width="959" height="502" alt="Safewalk arrow" src="https://github.com/user-attachments/assets/9eb983d0-93bc-4c13-9ef5-2249619e4ede" />
-
-### Safety Assistant (Chatbot)
-<img width="409" height="492" alt="safety assistant" src="https://github.com/user-attachments/assets/e53c277f-6c75-481d-91a4-16203c9b7acf" />
-If you have a non-emergency situation you are unsure how to navigate, you can use Safety Assistant for help! Give a descriptor of your situation, and Safety Assistant will provide you with phone numbers to contact and a potential route of action.
-
-<img width="281" height="400" alt="Safety assistant woman p1" src="https://github.com/user-attachments/assets/4f4b9a3b-a74c-48c1-83c3-ce6d2f317a13" />
-<img width="277" height="398" alt="Safety assistant woman p2" src="https://github.com/user-attachments/assets/13611c83-5fbb-4206-be7a-94ca154ef33d" />
-Note that Safety Assistant is programmed to help with identity-specific safety concerns as well. If you specify your identity (gender, race, etc.), Safety Assistant will provide you with specific identity-specific emergency numbers to call. For example, if you specify you are a woman, Safety Assistant provides you with the number of the nearby Women's Center too.
 
 ---
 

@@ -87,6 +87,29 @@
   50% { box-shadow: 0 0 0 6px rgba(198, 40, 40, 0); }
 }
 
+.heatmap-toggle-btn {
+  background: transparent;
+  color: #9e8fc0;
+  border: 1px solid #4b2e83;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.heatmap-toggle-btn:hover {
+  border-color: #b7a57a;
+  color: #b7a57a;
+}
+
+.heatmap-toggle-btn--active {
+  background: #1a0a2e;
+  color: #b7a57a;
+  border-color: #b7a57a;
+}
+
 .uw-alert-btn {
   background: #b7a57a;
   color: #1a0a2e;

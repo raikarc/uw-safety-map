@@ -1,0 +1,56 @@
+.heatmap-message {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2d1b4e;
+  border: 1px solid #4b2e83;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 12px;
+  color: #d4c5f0;
+  z-index: 1000;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.heatmap-legend {
+  position: absolute;
+  bottom: 24px;
+  left: 16px;
+  background: #2d1b4e;
+  border: 1px solid #4b2e83;
+  border-radius: 8px;
+  padding: 10px 14px;
+  z-index: 1000;
+  font-size: 12px;
+  color: #d4c5f0;
+  pointer-events: none;
+}
+
+.heatmap-legend-title {
+  font-weight: 700;
+  color: #b7a57a;
+  margin-bottom: 4px;
+}
+
+.heatmap-legend-count {
+  font-size: 11px;
+  color: #9e8fc0;
+  margin-bottom: 6px;
+}
+
+.heatmap-legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.heatmap-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}

@@ -3,6 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { UW_CENTER, UW_BOUNDS, INCIDENT_COLORS, INCIDENT_ICONS } from '../constants';
 import { formatDistanceToNow } from 'date-fns';
+import NighttimeHeatmap from './NighttimeHeatmap';
 import './SafetyMap.css';
 
 // Fix default leaflet icon issue with bundlers
@@ -62,7 +63,7 @@ function MapClickHandler({ onMapClick }) {
   return null;
 }
 
-export default function SafetyMap({ incidents, onMapClick, onIncidentClick, reportPin }) {
+export default function SafetyMap({ incidents, onMapClick, onIncidentClick, reportPin, heatmapActive }) {
   return (
     <MapContainer
       center={UW_CENTER}
@@ -83,6 +84,8 @@ export default function SafetyMap({ incidents, onMapClick, onIncidentClick, repo
       />
 
       <MapClickHandler onMapClick={onMapClick} />
+
+      <NighttimeHeatmap incidents={incidents} active={heatmapActive} />
 
       {incidents.map(inc => (
         <Marker

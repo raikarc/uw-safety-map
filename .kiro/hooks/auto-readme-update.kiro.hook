@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "name": "Auto README Update",
+  "when": {
+    "type": "promptSubmit"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Whenever I make a change in how I use Kiro features in the code, please update that on the README in a way that is standard with the rest of the code. Please update it in the README that is outside the folder in the github repository"
+  }
+}

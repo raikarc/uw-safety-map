@@ -1,6 +1,6 @@
 import './Header.css';
 
-export default function Header({ connected, onSimulate, onHelpChat }) {
+export default function Header({ connected, onSimulate, onHelpChat, heatmapActive, onHeatmapToggle }) {
   return (
     <header className="header">
       <div className="header-left">
@@ -15,6 +15,12 @@ export default function Header({ connected, onSimulate, onHelpChat }) {
         <span className="status-label">{connected ? 'Live' : 'Offline'}</span>
         <button className="help-chat-btn" onClick={onHelpChat}>
           🆘 Help Chat
+        </button>
+        <button
+          className={`heatmap-toggle-btn ${heatmapActive ? 'heatmap-toggle-btn--active' : ''}`}
+          onClick={onHeatmapToggle}
+        >
+          🌙 Heatmap
         </button>
         <button className="uw-alert-btn" onClick={onSimulate}>
           📢 Simulate UW Alert

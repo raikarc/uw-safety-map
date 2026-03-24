@@ -1,6 +1,6 @@
-# UW Safety Map 🗺️
+# HuskyHelp 🗺️
 
-> A live, crowdsourced safety map for the University of Washington and U-District — built by students, for students.
+> Protect the Pack — a live, crowdsourced safety map for the University of Washington and U-District, built by students, for students.
 
 ---
 
@@ -16,23 +16,24 @@ Recent increases in police presence on campus have made this even more pressing.
 
 ### Target Users
 
-UW students — particularly those living off-campus who regularly travel through the U-District on foot, by bike, or by bus.
+UW students — particularly those living off-campus who regularly travel through the U-District on foot, by bike, or by bus, especially at night.
 
 ### Solution
 
-Safety Map is a live, crowdsourced safety map of the UW campus and surrounding U-District. Any user can report an unsafe situation, drop a pin at the location, and categorize what's happening. Other users are notified in real time and can check the map at any moment for an up-to-date picture of campus safety.
-
-The app also crowdsources the *duration* of an incident. Pins automatically expire after 30 minutes with no activity — but nearby users can confirm whether an incident is still ongoing, keeping the map accurate without relying on any single source of truth.
+HuskyHelp is a live, crowdsourced safety map of the UW campus and surrounding U-District. Any user can report an unsafe situation, drop a pin at the location, and categorize what's happening. Other users are notified in real time and can check the map at any moment for an up-to-date picture of campus safety.
 
 ### Key Features
 
-- **Incident Reporting** — Drop a pin anywhere within the U-District boundary and tag it as Police Presence, Criminal Activity, or Violence, with an optional description
-- **UW Alert Integration** — Official UW Alerts are automatically added to the map as distinct pins so students can see exactly where and what is happening
+- **Incident Reporting** — Drop a pin anywhere within the U-District boundary and tag it as Police Presence, Criminal Activity, Violence, or Overdose, with an optional description
+- **UW Alert Integration** — Official UW Alerts are automatically added to the map as distinct pulsing pins
 - **Real-Time Updates** — The map updates live via WebSockets; every connected user sees new incidents the moment they're reported
 - **Crowdsourced Expiry** — Incidents auto-expire after 30 minutes if no one confirms them. Nearby users receive a prompt asking "Is this still happening?" to keep data reliable
-- **Proximity Notifications** — Users within a 1-mile walking radius of a new incident receive an in-app safety alert immediately
-- **UWPD Quick Contact** — When a student reports Violence or Criminal Activity, they're immediately prompted with the option to call UWPD's emergency line (206-685-1800) or non-emergency line (206-685-4973) directly from the app
-- **Confirm / Resolve** — Any user can click a pin to confirm it's still active (resetting the 30-minute timer) or mark it as resolved
+- **UWPD Quick Contact** — When a student reports Violence, Criminal Activity, or Overdose, they're immediately prompted with UWPD's emergency (206-685-1800) and non-emergency (206-685-4973) lines
+- **Naloxone Locator** — Overdose reports trigger a modal with step-by-step response instructions and the 5 nearest Narcan locations in the U-District
+- **Help Chat** — An AI safety assistant that responds to any situation (LINK, bus, rideshare, on campus, off campus, harassment, assault, overdose, mental health, female safety) with specific contacts and action steps
+- **Safe Walk Mode** — Start a timed check-in session before walking home. If you don't check in before the timer expires, the app alerts your emergency contact and displays UWPD's number. Survives page refreshes via `sessionStorage`
+- **Silent Distress Signal** — One tap sends your GPS location to all connected users and drops a 🆘 pin on the map, with a 3-second cancellable countdown to prevent accidents
+- **Nighttime Heatmap** — Toggle a color-coded density overlay showing where incidents have historically clustered between 8 PM and 4 AM, so students can make informed routing decisions
 
 ---
 
@@ -42,52 +43,69 @@ The app also crowdsources the *duration* of an incident. Pins automatically expi
 
 | Layer | Choice | Reasoning |
 |---|---|---|
-| Frontend | React + Vite | Fast dev experience, component model maps cleanly to the UI needs (map, modals, toasts, panels) |
-| Map | Leaflet + react-leaflet | Lightweight, open-source, no API key required for a demo — easy to swap for Mapbox later |
-| Real-time | Socket.IO | Handles WebSocket connections with automatic fallback; ideal for broadcasting incident updates to all connected clients instantly |
-| Backend | Node.js + Express | Minimal overhead, fast to iterate on, pairs naturally with Socket.IO |
-| Data | In-memory store (demo) | Keeps the demo self-contained with zero infrastructure setup; designed to be swapped for Firebase Firestore |
+| Frontend | React + Vite | Fast dev experience, component model maps cleanly to the UI needs |
+| Map | Leaflet + react-leaflet | Lightweight, open-source, no API key required for demo |
+| Real-time | Socket.IO | Handles WebSocket connections with automatic fallback; ideal for broadcasting incidents and distress signals instantly |
+| Backend | Node.js + Express | Minimal overhead, pairs naturally with Socket.IO |
+| Data | In-memory store (demo) | Self-contained with zero infrastructure setup; designed to swap for Firebase Firestore |
 
 ### Trade-offs
 
-- **In-memory vs. persistent storage** — The current demo uses an in-memory array on the server. This means incidents reset on server restart. The architecture is intentionally designed so Firestore can be dropped in with minimal changes — the data shape and API contract are already defined.
-- **Web-first vs. native mobile** — The demo is a React web app for speed of iteration and demoing in a browser. The component structure and hooks are written to be portable to React Native (Expo) when the time comes.
-- **Bounding box vs. geofencing** — Incident pins are constrained to a rectangular U-District bounding box rather than a precise polygon. This is a deliberate simplification for the demo that can be tightened with a proper GeoJSON boundary later.
-- **Anonymous reporting** — The demo does not require authentication. This lowers the barrier to reporting but opens the door to spam. The plan is to add UW NetID-based auth (Firebase Auth + SSO) so reports are tied to verified UW students.
+- **In-memory vs. persistent storage** — The demo uses an in-memory array. The architecture is intentionally designed so Firestore can be dropped in with minimal changes.
+- **Web-first vs. native mobile** — React web app for speed of iteration. Hooks and API layer are written to be portable to React Native (Expo).
+- **Client-side heatmap** — The nighttime heatmap grid is computed entirely on the client from the existing `incidents` array. No new server endpoint needed; re-renders reactively on new incidents.
+- **Safe Walk is client-owned** — The countdown timer runs in the browser via `setInterval`. The server only receives a log entry on expiry. This keeps the feature lightweight and offline-tolerant.
+- **Demo authentication** — A `LoginPage` component gates access with a `@uw.edu` email check; any password is accepted in demo mode. Planned: real UW NetID via Firebase Auth.
 
 ### Security & Scalability
 
-- Input is validated server-side before any incident is stored or broadcast
-- Coordinates are clamped to the U-District bounding box — reports outside the area are rejected
-- The 30-minute auto-expiry and crowdsourced confirmation model act as a natural spam filter: unconfirmed false reports disappear on their own
-- Socket.IO rooms can be used in a future version to only broadcast incidents to users within a relevant geographic area, reducing noise and improving scalability
-- Moving to Firebase Firestore adds persistence, real-time listeners, and horizontal scalability without a major architectural change
+- Input validated server-side before any incident is stored or broadcast
+- Coordinates clamped to the U-District bounding box — out-of-bounds reports rejected
+- 30-minute auto-expiry and crowdsourced confirmation act as a natural spam filter
+- Distress signals stored as incidents and broadcast to all clients — visible on the map immediately
+- Socket.IO rooms can scope broadcasts geographically in a future version
 
 ---
 
 ## Kiro Usage
 
-This project was built using [Kiro](https://kiro.dev), an AI-powered IDE. Here's how different Kiro features shaped the development process:
-
-### Vibe Coding
-
-The majority of the app was built through natural language prompting — describing features conversationally and letting Kiro scaffold the implementation. The initial prompt described the full product vision (crowdsourced map, incident types, UW Alert integration, expiry logic, purple/gold UI) and Kiro generated the full project structure, component hierarchy, server, and real-time logic in one pass. Subsequent features like the UWPD contact modal were added the same way — describe the behavior, Kiro writes it.
-
-### Agent Hooks
-
-Kiro's agent hooks were used to automate repetitive tasks during development — for example, automatically running diagnostics after file edits to catch issues immediately without manually switching context. This kept the feedback loop tight and reduced the chance of accumulating silent errors across files.
+This project was built using [Kiro](https://kiro.dev), an AI-powered IDE. The `.kiro/` directory is included in this repository to show how Kiro features shaped development.
 
 ### Spec-Driven Development
 
-The feature set was treated as a living spec. Each major capability (reporting, expiry, notifications, UWPD prompt) was described as a requirement before implementation, which helped Kiro generate code that matched the intended behavior rather than a generic interpretation. This is especially useful for a product with nuanced UX logic like the crowdsourced confirmation flow.
+The three nighttime safety features (Safe Walk Mode, Silent Distress Signal, Nighttime Heatmap) were built from a formal Kiro spec at `.kiro/specs/uw-student-safety-enhancements/`. The spec includes:
+
+- `requirements.md` — 6 user stories with numbered acceptance criteria, a glossary, and 15 formal correctness properties
+- `design.md` — architecture diagram, component interfaces, data models, socket event contracts, error handling table, and a full property-based testing strategy using `fast-check`
+- `tasks.md` — implementation checklist with requirement traceability, marking which tasks are complete vs. backlog
+
+Writing the spec before implementation forced precise thinking about edge cases (what happens if geolocation is denied? what if the socket is disconnected when a distress signal fires?) that would otherwise have been discovered at runtime.
+
+### Vibe Coding
+
+The initial app — map, incident reporting, real-time sync, UW Alert integration, UWPD modal, Naloxone modal, Help Chat — was built through natural language prompting. The full product vision was described conversationally and Kiro scaffolded the project structure, component hierarchy, server, and real-time logic. Subsequent features were added the same way.
 
 ### Steering Docs
 
-Steering files in `.kiro/steering/` can be used to encode project-wide conventions — things like the UW color palette (`#4b2e83` purple, `#b7a57a` gold), the U-District bounding box coordinates, or the rule that all modals follow the same CSS class structure. This keeps Kiro's output consistent across sessions without re-explaining conventions every time.
+Three always-included steering files in `.kiro/steering/` encode project-wide conventions that persist across sessions:
+
+- `project-conventions.md` — UW color palette, U-District bounding box coordinates, incident types, UWPD numbers, expiry rules, component patterns
+- `architecture.md` — system diagram, component map, API endpoints, Socket.IO events, incident data model
+- `tech.md`, `structure.md`, `product.md` — tech stack, file structure, and product overview (workspace-level steering, auto-included)
+
+These mean Kiro never needs to be re-explained the color palette, bounding box, or API shape — it reads them from the steering files on every session.
+
+### Agent Hooks
+
+Three hooks in `.kiro/hooks/` automate quality checks during development:
+
+- `lint-on-save.json` — runs ESLint whenever a `.jsx` or `.js` file is saved
+- `uwpd-safety-check.json` — a `preToolUse` hook that fires before any write to incident-related components, verifying the UWPD prompt behavior is preserved
+- `post-task-test.json` — a `postTaskExecution` hook that checks server health and data model consistency after any spec task completes
 
 ### MCP (Model Context Protocol)
 
-MCP servers can extend Kiro with external tool access. For a future version of this project, an MCP integration with a mapping or geolocation service would allow Kiro to reason about real geographic data — validating bounding boxes, computing walking distances for proximity alerts, or pulling in live UW Alert feed data — directly within the development workflow.
+MCP servers extend Kiro with external tool access. A future integration with a geolocation MCP server would allow Kiro to reason about real geographic data — validating bounding boxes, computing walking distances for proximity alerts, or pulling in live UW Alert feed data — directly within the development workflow.
 
 ---
 
@@ -95,24 +113,26 @@ MCP servers can extend Kiro with external tool access. For a future version of t
 
 ### Challenges
 
-- **Real-time state sync** — Keeping the incident list consistent across all connected clients required careful thinking about when to use REST (initial load) vs. WebSocket events (live updates). The final pattern — fetch on mount, then listen for `incidents_updated` socket events — is clean but took iteration to get right.
-- **Map marker customization** — Leaflet's default icon system doesn't play well with Vite's asset bundling. Getting custom emoji-based div icons to render correctly (and fixing the broken default icon URLs) required working around some Leaflet internals.
-- **Expiry UX** — Deciding how to communicate incident age and time-to-expiry to users without cluttering the UI was a design challenge. The current solution (expiry countdown in the side panel, auto-removal after 30 minutes) is minimal but functional.
+- **Real-time state sync** — Keeping the incident list consistent across all connected clients required careful thinking about when to use REST (initial load) vs. WebSocket events (live updates).
+- **Map marker customization** — Leaflet's default icon system doesn't play well with Vite's asset bundling. Getting custom emoji-based div icons to render correctly required working around Leaflet internals.
+- **Safe Walk timer accuracy** — A naive `setInterval` drifts over time. The solution stores `startedAt` in `sessionStorage` and computes `remaining = duration - elapsed` on each tick, so the timer is always wall-clock accurate even after a page refresh.
+- **Heatmap nighttime filtering** — The 8 PM–4 AM window crosses midnight, requiring `hour >= 20 || hour < 4` rather than a simple range check.
 
 ### Lessons
 
-- Crowdsourced data is only as good as its expiry model. Without the 30-minute auto-remove and confirmation system, the map would quickly fill with stale pins and lose user trust — the same problem that plagues the UW Alert system this app is trying to replace.
-- Starting with a web demo before committing to React Native was the right call. The core logic (hooks, API layer, socket handling) is already portable; the map component is the only piece that needs a native swap.
+- Crowdsourced data is only as good as its expiry model. Without the 30-minute auto-remove and confirmation system, the map would quickly fill with stale pins — the same problem that plagues the UW Alert system this app replaces.
+- Formal specs (requirements + design + tasks) pay off even for a demo. The correctness properties in the spec caught the midnight-crossing edge case in the heatmap filter before any code was written.
+- Starting with a web demo before committing to React Native was the right call. The core logic (hooks, API layer, socket handling) is already portable.
 
 ### Future Plans
 
-- **Firebase Firestore** — Persistent storage so incidents survive server restarts and can be queried historically
-- **UW NetID Authentication** — Tie reports to verified UW students to reduce spam and enable trust scoring
-- **React Native / Expo** — Mobile app with native push notifications (Firebase Cloud Messaging) for proximity alerts
-- **Live location tracking** — Opt-in GPS tracking to automatically detect when a user is near an active incident
-- **Real UW Alert API integration** — Parse and ingest official UW Alert emails/SMS into the map automatically
-- **Heatmap view** — Aggregate historical incident data into a heatmap so students can identify patterns in unsafe areas over time
-- **Walking route safety overlay** — Highlight safer vs. higher-risk walking routes between common origin/destination pairs (housing → campus)
+- **Firebase Firestore** — Persistent storage so incidents survive server restarts
+- **UW NetID Authentication** — Replace demo login with real UW NetID via Firebase Auth to tie reports to verified students
+- **React Native / Expo** — Mobile app with native push notifications (Firebase Cloud Messaging)
+- **Live location tracking** — Opt-in GPS to automatically detect proximity to active incidents
+- **Real UW Alert API integration** — Parse and ingest official UW Alert emails/SMS automatically
+- **Walking route safety overlay** — Highlight safer vs. higher-risk routes between common origin/destination pairs
+- **Emergency contact SMS** — When Safe Walk expires, actually send an SMS to the emergency contact via Twilio
 
 ---
 
@@ -160,12 +180,20 @@ Go to the local URL in your terminal. The green "Live" dot in the header confirm
 
 ```
 uw-safety-map/
+├── .kiro/
+│   ├── hooks/              # Agent hooks (lint-on-save, UWPD guard, post-task check)
+│   ├── specs/
+│   │   └── uw-student-safety-enhancements/  # Requirements, design, tasks for nighttime features
+│   └── steering/           # Always-included project conventions and architecture docs
 ├── client/
 │   └── src/
 │       ├── components/     # SafetyMap, Header, ReportModal, IncidentPanel,
-│       │                   # NotificationToast, UWAlertSimulator, UWPDModal
-│       ├── hooks/          # useSocket, useIncidents
-│       └── constants.js    # Bounding box, colors, incident types
+│       │                   # NotificationToast, UWAlertSimulator, UWPDModal,
+│       │                   # NaloxoneModal, HelpChat, SafeWalkPanel,
+│       │                   # SilentDistressButton, NighttimeHeatmap
+│       ├── hooks/          # useSocket, useIncidents, useSafeWalk, useDistressSignal
+│       ├── utils/          # chatbot.js, heatmap.js
+│       └── constants.js    # Bounding box, colors, incident types, heatmap config
 └── server/
-    └── index.js            # Express + Socket.IO, incident store, expiry logic
+    └── index.js            # Express + Socket.IO, incident store, distress handler, safe walk log
 ```

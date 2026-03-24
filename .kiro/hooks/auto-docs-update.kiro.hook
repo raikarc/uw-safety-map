@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Auto Update Docs on Source Change",
+  "description": "Watches JS, JSX, and CSS source files. When any change, asks the agent to reflect those changes in the README or docs folder.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.js",
+      "**/*.jsx",
+      "**/*.css"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A source file was just edited. Review the change and update the documentation accordingly. Check uw-safety-map/README.md and uw-safety-map/client/README.md — if the change affects any documented features, APIs, setup steps, or component behavior, update the relevant section. Keep the docs accurate and concise."
+  }
+}
